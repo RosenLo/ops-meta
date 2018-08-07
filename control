@@ -5,8 +5,7 @@ cd $WORKSPACE
 
 mkdir -p var
 
-module=meta-https
-app=ops-$module
+app=ops-meta
 conf=cfg.json
 pidfile=var/app.pid
 logfile=var/app.log
@@ -31,7 +30,7 @@ function start() {
         return 1
     fi
 
-    nohup ./$app -c $conf &> $logfile &
+    nohup `pwd`/$app -c `pwd`/$conf &> $logfile &
     echo $! > $pidfile
     echo "$app started..., pid=$!"
 }
@@ -63,18 +62,17 @@ function tailf() {
 }
 
 function build() {
-    go build -a
+    GOOS=linux GOARCH=amd64 go build -a
     if [ $? -ne 0 ]; then
         exit $?
     fi
-    mv $module $app
     ./$app -v
 }
 
 function pack() {
     build
     version=`./$app -v`
-    tar zcvf $app-$version.tar.gz control cfg.example.json $app
+    tar zcvf $app-$version.tar.gz control cfg.json $app
 }
 
 function packbin() {
@@ -92,7 +90,7 @@ function pid() {
 }
 
 function reload() {
-    curl -s 127.0.0.1:2000/config/reload | python -m json.tool
+    curl -s -k https://127.0.0.1:2000/config/reload | python -m json.tool
 }
 
 if [ "$1" == "" ]; then
