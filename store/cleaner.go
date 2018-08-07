@@ -13,8 +13,8 @@ func CleanStaleHost() {
 }
 
 func cleanStaleHost() {
-	// three days ago
-	before := time.Now().Unix() - 3600*24*3
+	// one days ago
+	before := time.Now().Unix() - 3600*24*1
 
 	hostnames := HostAgents.Hostnames()
 	count := len(hostnames)
