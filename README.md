@@ -23,3 +23,6 @@ agent tarball最终下载地址是：`{$tarball}/{$name}-{$version}.tar.gz`，�
 ## 注意
 
 - 虽然ops-meta提供了http服务，可以直接用来提供tarball下载，但是不推荐这样用，最好单独再搭建一个服务（比如nginx，如果觉得麻烦再搭一个ops-meta专门用于下载都可以）专门用于文件下载，这样ops-meta做的事情少，稳定。
+
+## 生成证书
+openssl req -x509 -nodes -newkey rsa:2048 -keyout key.pem -out cert.pem
