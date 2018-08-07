@@ -3,8 +3,8 @@ package http
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Cepave/ops-common/model"
-	"github.com/Cepave/ops-meta/g"
+	"github.com/RosenLo/ops-common/model"
+	"github.com/RosenLo/ops-meta/g"
 	"github.com/toolkits/net/httplib"
 	"net/http"
 	"testing"

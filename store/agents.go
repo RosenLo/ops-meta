@@ -1,8 +1,9 @@
 package store
 
 import (
-	"github.com/Cepave/ops-common/model"
 	"sync"
+
+	"github.com/RosenLo/ops-common/model"
 )
 
 type AgentsMap struct {

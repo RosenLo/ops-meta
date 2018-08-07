@@ -2,11 +2,12 @@ package http
 
 import (
 	"encoding/json"
-	"github.com/Cepave/ops-common/model"
-	"github.com/Cepave/ops-meta/g"
-	"github.com/Cepave/ops-meta/store"
 	"log"
 	"net/http"
+
+	"github.com/RosenLo/ops-common/model"
+	"github.com/RosenLo/ops-meta/g"
+	"github.com/RosenLo/ops-meta/store"
 )
 
 func configHeartbeatRoutes() {
