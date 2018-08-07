@@ -2,10 +2,12 @@ package http
 
 import (
 	"fmt"
-	"github.com/Cepave/ops-meta/store"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/RosenLo/ops-common/model"
+	"github.com/RosenLo/ops-meta/store"
 )
 
 func configProcRoutes() {
@@ -17,7 +19,15 @@ func configProcRoutes() {
 			return
 		}
 
-		data := store.HostAgents.Status(agentName)
+		type AgentsResponse struct {
+			Data  map[string]*model.RealAgent `json:"data"`
+			Total int                         `json:"total"`
+		}
+		agents := store.HostAgents.Status(agentName)
+		data := AgentsResponse{
+			Data:  agents,
+			Total: len(agents),
+		}
 		RenderJson(w, data)
 	})
 

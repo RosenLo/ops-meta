@@ -1,9 +1,10 @@
 package g
 
 import (
-	"github.com/Cepave/ops-common/model"
 	"log"
 	"strings"
+
+	"github.com/RosenLo/ops-common/model"
 )
 
 func DesiredAgents(hostname string) (desiredAgents []*model.DesiredAgent) {
